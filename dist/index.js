@@ -6,13 +6,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                                                                                                                                                                                                                                                                    */
 
 
-// Using bare setTimeout, setInterval, setImmediate
-// and requestAnimationFrame calls is very dangerous
-// because if you forget to cancel the request before
-// the component is unmounted, you risk the callback
-// throwing an exception.
-
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -21,11 +14,23 @@ var _reactNative = require('react-native');
 
 var _reactNative2 = _interopRequireDefault(_reactNative);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _reactTimerMixin = require('react-timer-mixin');
 
 var _reactTimerMixin2 = _interopRequireDefault(_reactTimerMixin);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var createReactClass = require('create-react-class');
+
+// Using bare setTimeout, setInterval, setImmediate
+// and requestAnimationFrame calls is very dangerous
+// because if you forget to cancel the request before
+// the component is unmounted, you risk the callback
+// throwing an exception.
 
 var _Dimensions$get = _reactNative.Dimensions.get('window'),
     width = _Dimensions$get.width,
@@ -108,8 +113,9 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 // missing `module.exports = exports['default'];` with babel6
-// export default React.createClass({
-module.exports = _react2.default.createClass({
+// export default React.createClass({ --- DEPRECATED
+// `create-react-class` provides legacy support for the old api: https://reactjs.org/docs/react-without-es6.html
+module.exports = createReactClass({
   displayName: 'exports',
 
 
@@ -118,25 +124,25 @@ module.exports = _react2.default.createClass({
    * @type {Object}
    */
   propTypes: {
-    horizontal: _react2.default.PropTypes.bool,
-    children: _react2.default.PropTypes.node.isRequired,
+    horizontal: _propTypes2.default.bool,
+    children: _propTypes2.default.node.isRequired,
     style: _reactNative.ViewPropTypes.style,
-    pagingEnabled: _react2.default.PropTypes.bool,
-    showsHorizontalScrollIndicator: _react2.default.PropTypes.bool,
-    showsVerticalScrollIndicator: _react2.default.PropTypes.bool,
-    bounces: _react2.default.PropTypes.bool,
-    scrollsToTop: _react2.default.PropTypes.bool,
-    removeClippedSubviews: _react2.default.PropTypes.bool,
-    automaticallyAdjustContentInsets: _react2.default.PropTypes.bool,
-    showsPagination: _react2.default.PropTypes.bool,
-    showsButtons: _react2.default.PropTypes.bool,
-    loop: _react2.default.PropTypes.bool,
-    autoplay: _react2.default.PropTypes.bool,
-    autoplayTimeout: _react2.default.PropTypes.number,
-    autoplayDirection: _react2.default.PropTypes.bool,
-    index: _react2.default.PropTypes.number,
-    renderPagination: _react2.default.PropTypes.func,
-    onScroll: _react2.default.PropTypes.func
+    pagingEnabled: _propTypes2.default.bool,
+    showsHorizontalScrollIndicator: _propTypes2.default.bool,
+    showsVerticalScrollIndicator: _propTypes2.default.bool,
+    bounces: _propTypes2.default.bool,
+    scrollsToTop: _propTypes2.default.bool,
+    removeClippedSubviews: _propTypes2.default.bool,
+    automaticallyAdjustContentInsets: _propTypes2.default.bool,
+    showsPagination: _propTypes2.default.bool,
+    showsButtons: _propTypes2.default.bool,
+    loop: _propTypes2.default.bool,
+    autoplay: _propTypes2.default.bool,
+    autoplayTimeout: _propTypes2.default.number,
+    autoplayDirection: _propTypes2.default.bool,
+    index: _propTypes2.default.number,
+    renderPagination: _propTypes2.default.func,
+    onScroll: _propTypes2.default.func
   },
 
   mixins: [_reactTimerMixin2.default],
